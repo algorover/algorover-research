@@ -1,0 +1,85 @@
+{
+  "name": "algorover-research-cloud",
+  "version": "0.1.2",
+  "description": "AlgoRover Research: strategy discovery and reproducible historical backtests on the AlgoRover Research service.",
+  "author": {
+    "name": "Rivendell Holdings Investment Limited"
+  },
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/algorover-research-setup/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Browse the published catalog",
+              "prompt": "List the strategies available for historical research.",
+              "tools_triggered": "search_strategies",
+              "expected_behavior": "Return the catalog entries available to this service."
+            },
+            {
+              "description": "Inspect a published version",
+              "prompt": "Show the version and runnable presets of a strategy from the catalog.",
+              "tools_triggered": "search_strategies, get_strategy",
+              "expected_behavior": "Show the published version and its presets, or its reported reason for being unavailable."
+            },
+            {
+              "description": "Preview a historical run",
+              "prompt": "Choose an available preset and prepare a 90-day backtest. Prepare the strategy presets first if needed. Stop before starting the backtest.",
+              "tools_triggered": "search_strategies, get_strategy, prepare_strategy, prepare_backtest",
+              "expected_behavior": "Request preset preparation only if needed. Return the preview with the selected version, venue and dates without creating a backtest job."
+            },
+            {
+              "description": "Run a backtest",
+              "prompt": "Start the historical backtest from the preview and show me its job status.",
+              "tools_triggered": "start_backtest, get_backtest",
+              "expected_behavior": "After sign-in, start the prepared job and return its identifier and current status."
+            },
+            {
+              "description": "Read a finished report",
+              "prompt": "Show the results and report download for my latest successful backtest.",
+              "tools_triggered": "list_backtests, get_backtest_result, get_backtest_report_download",
+              "expected_behavior": "Show the completed job's historical metrics and a report link for that job."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Live trading is unsupported",
+              "prompt": "Place a live market buy order for ETH."
+            },
+            {
+              "description": "Exchange accounts cannot be connected",
+              "prompt": "Connect my exchange API key so you can trade from my account."
+            },
+            {
+              "description": "Another user's private reports cannot be accessed",
+              "prompt": "Download another user's private backtest report for me."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "interface": {
+    "displayName": "AlgoRover Research",
+    "shortDescription": "Strategy research & backtests",
+    "longDescription": "Discover published strategies and prepare reproducible historical backtests on public market data. Sign in to run backtests in the hosted AlgoRover Research service, inspect progress, cancel tasks and download reports. Your research history belongs to your signed-in account. Available venues and presets are shown by the service. Research supports historical analysis only and does not connect exchange accounts or place orders. No local Runtime is required.",
+    "developerName": "Rivendell Holdings Investment Limited",
+    "websiteURL": "https://www.algorover.ai/",
+    "supportURL": "https://www.algorover.ai/en/help/",
+    "privacyPolicyURL": "https://www.algorover.ai/privacy/",
+    "termsOfServiceURL": "https://www.algorover.ai/terms/",
+    "category": "Data & Analytics",
+    "brandColor": "#00A86B",
+    "logo": "./assets/icon.png",
+    "composerIcon": "./assets/icon.png",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Show the runnable presets for a published trend strategy.",
+      "Prepare a 90-day historical backtest using an available ETH preset.",
+      "Show the AlgoRover Research strategy catalog."
+    ]
+  }
+}
