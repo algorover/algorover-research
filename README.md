@@ -1,24 +1,26 @@
 # AlgoRover Research
 
-AlgoRover Research 帮助你在对话中查找已发布的交易策略，使用公开市场数据运行历史回测，并查看成交记录和研究报告。回测在 AlgoRover Research 云端服务中执行。
+English | [简体中文](README.zh-CN.md)
 
-本仓库提供 0.1.2 版本的 Codex 插件及安装包。插件连接 `https://research.algorover.ai/mcp`，无需在本机安装 Python、Docker、AlgoRover 主程序或本地 Runtime。
+AlgoRover Research helps you find published trading strategies, run historical backtests on public market data, and inspect trades and research reports through conversation. Backtests run in the hosted AlgoRover Research service.
 
-[下载插件 ZIP](algorover-research-cloud-0.1.2.zip)
+This repository distributes version 0.1.2 of the Codex plugin and its installation package. The plugin connects to `https://research.algorover.ai/mcp`. You do not need to install Python, Docker, the main AlgoRover application, or a local Runtime.
 
-## 功能
+[Download the plugin ZIP](algorover-research-cloud-0.1.2.zip)
 
-- 搜索策略，查看发布版本、策略包许可证和可运行的预设。
-- 按策略支持的市场和预设准备回测，选择 90 天或 365 天的历史窗口，并在启动前查看配置。
-- 运行回测，查看任务进度，取消尚未完成的任务。
-- 查看自己的回测指标、成交明细和历史任务，下载研究报告；按需获取已发布策略包的下载链接。
-- 按用户请求删除指定回测结果或全部 Research 数据。删除操作需要单独授权。
+## Features
 
-可用的策略、市场和预设以服务返回的内容为准。需要解析预设的策略会先进入准备流程；准备失败时，插件会显示服务返回的原因。
+- Search strategies and inspect published versions, package licenses, and runnable presets.
+- Prepare a backtest using a supported market and preset, choose a 90-day or 365-day historical window, and review the configuration before starting.
+- Run backtests, check progress, and cancel unfinished tasks.
+- View your backtest metrics, trade details, and task history, and download research reports. Request download links for published strategy packages when needed.
+- Delete a selected backtest result or all your Research data on request. Deletion requires separate authorization.
 
-## 安装与登录
+Available strategies, markets, and presets depend on what the service returns. Strategies that need preset preparation go through that step first. If preparation fails, the plugin displays the reason returned by the service.
 
-在支持插件的 Codex 客户端中使用。通过终端安装时，依次执行：
+## Installation and sign-in
+
+Use a Codex client that supports plugins. To install from a terminal, run these commands in order:
 
 ```bash
 codex plugin marketplace add algorover/algorover-research
@@ -26,46 +28,46 @@ codex plugin add algorover-research-cloud@algorover-research-github
 codex mcp login algorover-research --oauth-client-registration dcr --scopes research:read,research:run
 ```
 
-最后一条命令会打开浏览器授权页。使用 AlgoRover 账号登录，核对申请的权限后点击「允许授权」。终端提示授权成功后，在 Codex 新建一个对话。
+The last command opens the authorization page in your browser. Sign in with your AlgoRover account, review the requested permissions, and allow access. Once the terminal confirms authorization, start a new conversation in Codex.
 
-搜索策略和准备回测配置可以公开访问。启动回测、查看个人任务和下载个人报告需要登录。上述命令申请的权限为：
+Strategy search and backtest configuration previews are publicly accessible. Starting backtests, viewing personal tasks, and downloading personal reports require sign-in. The command above requests these permissions:
 
-| 权限 | 用途 |
+| Permission | Purpose |
 | --- | --- |
-| `research:read` | 读取当前账号的研究任务、结果和报告。 |
-| `research:run` | 启动和取消当前账号的回测任务。 |
+| `research:read` | Read research tasks, results, and reports belonging to the signed-in account. |
+| `research:run` | Start and cancel backtest tasks belonging to the signed-in account. |
 
-删除数据需要额外的 `research:delete` 权限，上面的登录命令没有申请此权限。需要使用删除功能时，请通过客户端重新授权并包含该权限，或前往 [Research 网页](https://research.algorover.ai/)管理自己的数据。
+Deleting data requires the additional `research:delete` permission, which the command above does not request. To use deletion tools, authorize again through your client with that permission, or manage your data on the [Research website](https://research.algorover.ai/).
 
-登录和授权均在浏览器中完成。请勿在对话中提供密码、访问令牌或交易所 API 密钥。
+Sign-in and authorization take place in your browser. Do not share passwords, access tokens, or exchange API keys in the conversation.
 
-## 使用示例
+## Example prompts
 
-- 「使用 AlgoRover Research 搜索 EMA 回调策略，查看可运行的预设。」
-- 「选择一个可用的 ETH 预设，准备最近 90 天的回测，先给我看配置。」
-- 「按刚才的配置启动回测，并查看任务进度。」
-- 「查看我最近一次成功回测的指标和成交记录，给我报告下载链接。」
-- 「取消我刚才启动的回测。」
+- "Use AlgoRover Research to find EMA pullback strategies and show their runnable presets."
+- "Choose an available ETH preset and prepare a backtest for the last 90 days. Show me the configuration first."
+- "Start the backtest with that configuration and check its progress."
+- "Show the metrics and trades from my latest successful backtest, and give me the report download link."
+- "Cancel the backtest I just started."
 
-## 数据与权限
+## Data and permissions
 
-插件将执行任务所需的策略引用、市场、预设和回测时间范围发送到 AlgoRover Research 服务。登录后的任务和研究结果归当前账号所有，更换对话后仍可查询。插件按账号权限访问个人数据。
+The plugin sends the strategy reference, market, preset, and historical window needed for your task to the AlgoRover Research service. Tasks and results belong to the signed-in account and can be retrieved across conversations. Access to personal data follows account permissions.
 
-你可以请求删除指定回测结果，或明确请求删除全部 Research 数据。删除全部 Research 数据与删除登录所用的身份账号是两个操作。数据收集、使用和保留规则见[隐私政策](https://www.algorover.ai/privacy/)。
+You can request deletion of a selected backtest result or explicitly request deletion of all your Research data. Deleting all Research data is separate from deleting the identity account used to sign in. See the [privacy policy](https://www.algorover.ai/privacy/) for data collection, use, and retention rules.
 
-AlgoRover Research 仅支持历史研究，不连接交易所账户，也不执行交易订单。历史回测结果不能证明未来收益。
+AlgoRover Research supports historical research only. It does not connect exchange accounts or execute trading orders. Historical backtest results do not establish future returns.
 
-## 连接问题
+## Connection issues
 
-出现 `OAuth authorization required` 时，重新执行上面的登录命令，完成浏览器授权后新建对话。
+If you see `OAuth authorization required`, run the sign-in command above again, complete authorization in your browser, and start a new conversation.
 
-服务连接失败时，请检查网络及客户端的 MCP 连接状态。联系支持时提供错误信息和请求编号，避免附上密码或令牌。
+If the service cannot be reached, check your network and the client's MCP connection status. When contacting support, include the error message and request ID. Leave out passwords and tokens.
 
-## 发布方与支持
+## Publisher and support
 
-发布方：Rivendell Holdings Investment Limited。
+Published by Rivendell Holdings Investment Limited.
 
-- [AlgoRover 官网](https://www.algorover.ai/)
-- [帮助与支持](https://www.algorover.ai/en/help/)
-- [隐私政策](https://www.algorover.ai/privacy/)
-- [服务条款](https://www.algorover.ai/terms/)
+- [AlgoRover website](https://www.algorover.ai/)
+- [Help and support](https://www.algorover.ai/en/help/)
+- [Privacy policy](https://www.algorover.ai/privacy/)
+- [Terms of service](https://www.algorover.ai/terms/)
