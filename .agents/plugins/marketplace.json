@@ -1,0 +1,10 @@
+{
+  "name": "algorover-research-github",
+  "interface": {"displayName": "AlgoRover Research"},
+  "plugins": [{
+    "name": "algorover-research-cloud",
+    "source": {"source": "local", "path": "./algorover-research-cloud"},
+    "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
+    "category": "Data & Analytics"
+  }]
+}
