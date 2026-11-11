@@ -28,7 +28,16 @@ codex plugin add algorover-research-cloud@algorover-research-github
 codex mcp login algorover-research --oauth-client-registration dcr --scopes research:read,research:run
 ```
 
-最后一条命令会打开浏览器授权页。使用 AlgoRover 账号登录，核对申请的权限后点击「允许授权」。终端提示授权成功后，在 Codex 新建一个对话。
+最后一条命令会打开浏览器授权页。使用 AlgoRover 账号登录，核对申请的权限后点击「允许授权」。
+
+在 Codex 里选择 `@AlgoRover Research`，说「我想开始用 AlgoRover Research」。聊天里会打开可操作的策略目录卡片。在卡片中选择策略，即可查看详情并准备回测。如果当前对话无法使用 Research 工具，新建对话后再选一次插件。
+
+已从本仓库安装过插件的用户，可以刷新插件市场并重新安装。
+
+```bash
+codex plugin marketplace upgrade algorover-research-github
+codex plugin add algorover-research-cloud@algorover-research-github
+```
 
 搜索策略和准备回测配置可以公开访问。启动回测、查看个人任务和下载个人报告需要登录。上述命令申请的权限为：
 

@@ -77,9 +77,9 @@
     "composerIcon": "./assets/icon.png",
     "capabilities": [],
     "defaultPrompt": [
+      "Open the AlgoRover Research strategy catalog.",
       "Show the runnable presets for a published trend strategy.",
-      "Prepare a 90-day historical backtest using an available ETH preset.",
-      "Show the AlgoRover Research strategy catalog."
+      "Prepare a 90-day historical backtest using an available ETH preset."
     ]
   }
 }

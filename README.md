@@ -28,7 +28,16 @@ codex plugin add algorover-research-cloud@algorover-research-github
 codex mcp login algorover-research --oauth-client-registration dcr --scopes research:read,research:run
 ```
 
-The last command opens the authorization page in your browser. Sign in with your AlgoRover account, review the requested permissions, and allow access. Once the terminal confirms authorization, start a new conversation in Codex.
+The last command opens the authorization page in your browser. Sign in with your AlgoRover account, review the requested permissions, and allow access.
+
+In Codex, select `@AlgoRover Research` and say “I want to start using AlgoRover Research.” The interactive strategy catalog opens in the chat. Choose a strategy on the card to see its details and prepare a backtest. If the current conversation cannot access Research tools, start a new conversation and select the plugin again.
+
+If you already installed the plugin from this repository, refresh the marketplace and reinstall the plugin from it:
+
+```bash
+codex plugin marketplace upgrade algorover-research-github
+codex plugin add algorover-research-cloud@algorover-research-github
+```
 
 Strategy search and backtest configuration previews are publicly accessible. Starting backtests, viewing personal tasks, and downloading personal reports require sign-in. The command above requests these permissions:
 
