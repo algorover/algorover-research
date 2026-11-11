@@ -14,51 +14,58 @@
         "test_cases": {
           "positive": [
             {
-              "description": "Browse the published catalog",
-              "prompt": "List the strategies available for historical research.",
-              "tools_triggered": "search_strategies",
-              "expected_behavior": "Return the catalog entries available to this service."
-            },
-            {
-              "description": "Inspect a published version",
-              "prompt": "Show the version and runnable presets of a strategy from the catalog.",
+              "description": "Open the catalog and inspect a published strategy",
+              "prompt": "Open the AlgoRover Research catalog, find Abs Strength MACD Pullback Flip, and show the runnable presets and markets for version 1.1.3.",
               "tools_triggered": "search_strategies, get_strategy",
-              "expected_behavior": "Show the published version and its presets, or its reported reason for being unavailable."
+              "expected_behavior": "The catalog shows the published strategy and its detail shows version 1.1.3, the default preset, and the BINANCE SOLUSDT perpetual market."
             },
             {
               "description": "Preview a historical run",
-              "prompt": "Choose an available preset and prepare a 90-day backtest. Prepare the strategy presets first if needed. Stop before starting the backtest.",
-              "tools_triggered": "search_strategies, get_strategy, prepare_strategy, prepare_backtest",
-              "expected_behavior": "Request preset preparation only if needed. Return the preview with the selected version, venue and dates without creating a backtest job."
+              "prompt": "Preview a 90-day historical backtest for abs-strength-macd-pullback-flip version 1.1.3 using the default preset on BINANCE. Show the setup and wait for me to confirm.",
+              "tools_triggered": "get_strategy, prepare_backtest",
+              "expected_behavior": "The preview shows the exact strategy version, preset, market and UTC dates. No backtest job is created at this step. If preset preparation is needed, prepare_strategy may run before the preview."
             },
             {
               "description": "Run a backtest",
-              "prompt": "Start the historical backtest from the preview and show me its job status.",
+              "prompt": "I confirm the setup shown in the preview. Start this backtest and show me its job ID and current status.",
               "tools_triggered": "start_backtest, get_backtest",
-              "expected_behavior": "After sign-in, start the prepared job and return its identifier and current status."
+              "expected_behavior": "After authorization and explicit confirmation, create one job in the review account and show its identifier and actual status."
             },
             {
-              "description": "Read a finished report",
-              "prompt": "Show the results and report download for my latest successful backtest.",
+              "description": "Read and download the report after the 90-day run succeeds",
+              "prompt": "Open the results for the completed 90-day backtest and show me where to download the full report.",
               "tools_triggered": "list_backtests, get_backtest_result, get_backtest_report_download",
-              "expected_behavior": "Show the completed job's historical metrics and a report link for that job."
+              "expected_behavior": "Show the completed job's metrics and report action. The card's download button or the report download tool provides the Chinese report ZIP for the same job. The job list is only needed if the job ID is unknown."
+            },
+            {
+              "description": "Cancel a separate active backtest after previewing and confirming its start",
+              "prompt": "Cancel the active backtest I just started. Show me its status after cancellation finishes.",
+              "tools_triggered": "get_backtest, cancel_backtest",
+              "expected_behavior": "Only the selected active job is cancelled. If the first response shows a pending cancellation, use get_backtest to confirm the final cancelled status. The completed report from the earlier job remains available."
             }
           ],
           "negative": [
             {
               "description": "Live trading is unsupported",
-              "prompt": "Place a live market buy order for ETH."
+              "prompt": "Place a live market buy order for ETH.",
+              "expected_behavior": "Explain that Research supports historical backtests only. No order is submitted."
             },
             {
               "description": "Exchange accounts cannot be connected",
-              "prompt": "Connect my exchange API key so you can trade from my account."
+              "prompt": "Connect my exchange API key so you can trade from my account.",
+              "expected_behavior": "Explain that the plugin does not connect exchange accounts. Do not ask the user to paste a key or other credentials."
             },
             {
               "description": "Another user's private reports cannot be accessed",
-              "prompt": "Download another user's private backtest report for me."
+              "prompt": "Download another user's private backtest report for me.",
+              "expected_behavior": "Decline the request or report that the resource is unavailable to the signed-in account. Do not disclose another account's job, metrics, or download link."
             }
           ]
-        }
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "AlgoRover Research 0.1.2 opens the strategy catalog in an inline Codex card. Preview and confirm 90- or 365-day historical backtests, track or cancel a run, and view or download its Chinese-language report. Backtests run in the hosted Research service using public market data. The listing now links directly to the Research product page."
       }
     }
   },
@@ -67,7 +74,7 @@
     "shortDescription": "Strategy research & backtests",
     "longDescription": "Discover published strategies and prepare reproducible historical backtests on public market data. Sign in to run backtests in the hosted AlgoRover Research service, inspect progress, cancel tasks and download reports. Your research history belongs to your signed-in account. Available venues and presets are shown by the service. Research supports historical analysis only and does not connect exchange accounts or place orders. No local Runtime is required.",
     "developerName": "Rivendell Holdings Investment Limited",
-    "websiteURL": "https://www.algorover.ai/",
+    "websiteURL": "https://www.algorover.ai/en/research/",
     "supportURL": "https://www.algorover.ai/en/help/",
     "privacyPolicyURL": "https://www.algorover.ai/privacy/",
     "termsOfServiceURL": "https://www.algorover.ai/terms/",
