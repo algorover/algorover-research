@@ -1,6 +1,6 @@
 {
   "name": "algorover-research-cloud",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "AlgoRover Research: strategy discovery and reproducible historical backtests on the AlgoRover Research service.",
   "author": {
     "name": "Rivendell Holdings Investment Limited"
@@ -65,7 +65,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "AlgoRover Research 0.1.2 opens the strategy catalog in an inline Codex card. Preview and confirm 90- or 365-day historical backtests, track or cancel a run, and view or download its Chinese-language report. Backtests run in the hosted Research service using public market data. The listing now links directly to the Research product page."
+        "release_notes": "AlgoRover Research 0.1.3 includes authorization recovery guidance and a hosted inline-card release notice with update instructions. Check your installed version in Codex before updating. Google sign-in returns to the original Research authorization flow; after deleting all Research data, sign in again to begin new research."
       }
     }
   },

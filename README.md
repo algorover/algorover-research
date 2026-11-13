@@ -4,9 +4,11 @@ English | [简体中文](README.zh-CN.md)
 
 AlgoRover Research helps you find published trading strategies, run historical backtests on public market data, and inspect trades and research reports through conversation. Backtests run in the hosted AlgoRover Research service.
 
-This repository distributes version 0.1.2 of the Codex plugin and its installation package. The plugin connects to `https://research.algorover.ai/mcp`. You do not need to install Python, Docker, the main AlgoRover application, or a local Runtime.
+This repository distributes version 0.1.3 of the Codex plugin and its installation package. The plugin connects to `https://research.algorover.ai/mcp`. You do not need to install Python, Docker, the main AlgoRover application, or a local Runtime.
 
-[Download the plugin ZIP](algorover-research-cloud-0.1.2.zip)
+[Download the plugin ZIP](algorover-research-cloud-0.1.3.zip)
+
+Research cards show a release notice with update instructions. Check the installed version in Codex plugin details; the card cannot detect it automatically. You can dismiss the notice for the displayed version. Reopen the card after updating. The notice does not block backtests.
 
 ## Features
 
