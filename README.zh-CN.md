@@ -4,9 +4,11 @@
 
 AlgoRover Research 帮助你在对话中查找已发布的交易策略，使用公开市场数据运行历史回测，并查看成交记录和研究报告。回测在 AlgoRover Research 云端服务中执行。
 
-本仓库提供 0.1.2 版本的 Codex 插件及安装包。插件连接 `https://research.algorover.ai/mcp`，无需在本机安装 Python、Docker、AlgoRover 主程序或本地 Runtime。
+本仓库提供 0.1.3 版本的 Codex 插件及安装包。插件连接 `https://research.algorover.ai/mcp`，无需在本机安装 Python、Docker、AlgoRover 主程序或本地 Runtime。
 
-[下载插件 ZIP](algorover-research-cloud-0.1.2.zip)
+[下载插件 ZIP](algorover-research-cloud-0.1.3.zip)
+
+Research 卡片会显示版本公告和更新方法。请在 Codex 插件详情中确认已安装版本；卡片无法自动读取本机安装版本。可以关闭当前版本的提醒，更新后重新打开卡片。提醒不会阻止回测。
 
 ## 功能
 
