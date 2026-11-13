@@ -11,7 +11,9 @@ Research uses public market data and supports historical analysis only. It does 
 
 ## Show the Research card first
 
-When the user opens or starts using AlgoRover Research without specifying a strategy or task, call `search_strategies` with `{}` before replying. Use their query when they provide one. Show the inline strategy catalog so they can make their first choice on the card.
+When the user opens or starts using AlgoRover Research without specifying a strategy or task, call `search_strategies` before replying, explicitly passing `locale`: use `{"locale":"zh-CN"}` for a Chinese conversation and `{"locale":"en"}` for an English conversation. Honor an explicit language preference; for other languages use the supported locale `en`. Use their query when they provide one. Show the inline strategy catalog so they can make their first choice on the card.
+
+Pass the same locale to subsequent Research tools that accept it, including strategy details, pagination and reopening the catalog. When the user changes language, use that language for subsequent calls.
 
 For a specific strategy, preview, job list, job status, cancellation or report request, call the corresponding card-enabled Research tool before replying. If the selected strategy still needs a preset, venue or window, open its `get_strategy` card so the user can choose. Keep replies brief and direct the user to the inline card's controls.
 
@@ -50,4 +52,4 @@ If Research tools are missing or authorization fails, follow Connection recovery
 - Call `delete_backtest_result` only for the result the user asked to delete.
 - Call `delete_research_data` only when the user explicitly requests deletion of all their Research data, passing the required `delete-my-research-data` confirmation. This does not mean deleting their external identity account.
 
-Respond in the user's language and use supported locale values from the tool schema.
+Respond in the user's language.
