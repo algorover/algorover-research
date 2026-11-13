@@ -30,7 +30,7 @@ codex mcp login algorover-research --oauth-client-registration dcr --scopes rese
 
 最后一条命令会打开浏览器授权页。使用 AlgoRover 账号登录，核对申请的权限后点击「允许授权」。
 
-在 Codex 里选择 `@AlgoRover Research`，说「我想开始用 AlgoRover Research」。聊天里会打开可操作的策略目录卡片。在卡片中选择策略，即可查看详情并准备回测。如果当前对话无法使用 Research 工具，新建对话后再选一次插件。
+在 Codex 里选择 `@AlgoRover Research`，说「我想开始用 AlgoRover Research」。聊天里会打开可操作的策略目录卡片。在卡片中选择策略，即可查看详情并准备回测。如果当前对话无法使用 Research 工具，请检查插件连接，并按下方「连接问题」恢复。
 
 已从本仓库安装过插件的用户，可以刷新插件市场并重新安装。
 
@@ -68,7 +68,9 @@ AlgoRover Research 仅支持历史研究，不连接交易所账户，也不执�
 
 ## 连接问题
 
-出现 `OAuth authorization required` 时，重新执行上面的登录命令，完成浏览器授权后新建对话。
+出现 `OAuth authorization required`、`reauthenticationRequired` 或 `notLoggedIn` 时，通过客户端重新连接 Research，或执行上面的登录命令。完成浏览器登录并允许插件申请的权限，等待客户端确认连接成功后，重试原来的请求。Google 身份确认不代表 Research 已登录或插件已连接。回调超时后重新发起授权；仅当客户端已连接且需要新对话加载工具时，再新建对话。
+
+删除全部 Research 数据完成后，可以用同一 AlgoRover 账号重新登录、授权并开始新的研究。已删除的任务、结果和报告保持不可用。删除处理中会暂停访问和授权。
 
 服务连接失败时，请检查网络及客户端的 MCP 连接状态。联系支持时提供错误信息和请求编号，避免附上密码或令牌。
 
