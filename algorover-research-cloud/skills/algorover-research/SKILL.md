@@ -15,7 +15,16 @@ When the user opens or starts using AlgoRover Research without specifying a stra
 
 For a specific strategy, preview, job list, job status, cancellation or report request, call the corresponding card-enabled Research tool before replying. If the selected strategy still needs a preset, venue or window, open its `get_strategy` card so the user can choose. Keep replies brief and direct the user to the inline card's controls.
 
-If the current conversation has no Research tools, ask the user to open a new Codex conversation and select `@AlgoRover Research`. If the host only renders text, use the actual tool result and its returned links. Describe the outcome without claiming that a card opened. A task's `web_url` opens its Research web page.
+If Research tools are missing or authorization fails, follow Connection recovery below. If the host only renders text, use the actual tool result and its returned links. Describe the outcome without claiming that a card opened. A task's `web_url` opens its Research web page.
+
+## Connection recovery
+
+- Check the host's available connection status when tools are missing. `reauthenticationRequired`, `notLoggedIn`, `OAuth authorization required`, or an authentication challenge means Research needs authorization. Explain this and use the host's Research connect or reconnect action. When the installed Codex CLI confirms the server name `algorover-research`, `codex mcp login algorover-research` is another way to start that authorization.
+- Keep the original strategy or task request. After the host confirms the connection, discover Research tools again and retry that request. Opening an authorization page alone does not confirm success. Browser sign-in must be followed by approval of the plugin's requested permissions.
+- Missing tools alone does not establish an authentication failure. If connection status is unavailable, say it is unknown and direct the user to check the Research plugin connection. Suggest a new conversation only when authorization is confirmed and the host requires a new conversation to load tools; creating a conversation does not renew OAuth.
+- An OAuth callback timeout means the connection is unconfirmed. Explain that Google identity confirmation, Research browser sign-in, and the host's plugin connection are separate stages. Start a fresh host authorization when the previous attempt expired; keep the original request for retry after connection succeeds.
+- `RESEARCH_DELETION_PENDING` means data deletion temporarily blocks access and authorization. Wait for deletion to complete. Then the same AlgoRover account can sign in and authorize again to start new research; deleted tasks, results, and reports stay unavailable. `RESEARCH_DATA_DELETED` requires a fresh sign-in and authorization, not reuse of the old connection.
+- Report service or network failures as returned. Never ask for tokens or credentials in chat, weaken authorization, or substitute a local Runtime.
 
 ## Discover and prepare
 
@@ -27,7 +36,7 @@ If the current conversation has no Research tools, ask the user to open a new Co
 ## Run and inspect
 
 - After confirmation in chat, call `start_backtest` with the returned `prepared_input`, `preparation_ticket`, and `request_key` as `idempotency_key` to open the task card. If the user started the backtest from the card, use the created task. Reuse the key if the same start request must be retried after an uncertain response. Do not invent identifiers or silently change parameters.
-- If authorization is required, let the host complete OAuth and then resume the requested operation.
+- If authorization is required, follow Connection recovery and then resume the requested operation.
 - Use `get_backtest` to show the requested task's status card and `list_backtests` to show the signed-in user's task list.
 - Follow the task's returned `allowed_actions` for cancellation, viewing results, and deletion. Refresh the task before acting on an older status.
 - For results or a report download, use `get_backtest_result` to show the result card. Point to its Download full report button. In a text-only host, use `get_backtest_report_download` to obtain the requested link. Explain metrics, assumptions, warnings and provenance when asked. Historical results do not establish future returns.

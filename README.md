@@ -30,7 +30,7 @@ codex mcp login algorover-research --oauth-client-registration dcr --scopes rese
 
 The last command opens the authorization page in your browser. Sign in with your AlgoRover account, review the requested permissions, and allow access.
 
-In Codex, select `@AlgoRover Research` and say “I want to start using AlgoRover Research.” The interactive strategy catalog opens in the chat. Choose a strategy on the card to see its details and prepare a backtest. If the current conversation cannot access Research tools, start a new conversation and select the plugin again.
+In Codex, select `@AlgoRover Research` and say “I want to start using AlgoRover Research.” The interactive strategy catalog opens in the chat. Choose a strategy on the card to see its details and prepare a backtest. If Research tools are unavailable, check the plugin connection and follow Connection issues below.
 
 If you already installed the plugin from this repository, refresh the marketplace and reinstall the plugin from it:
 
@@ -68,7 +68,9 @@ AlgoRover Research supports historical research only. It does not connect exchan
 
 ## Connection issues
 
-If you see `OAuth authorization required`, run the sign-in command above again, complete authorization in your browser, and start a new conversation.
+If you see `OAuth authorization required`, `reauthenticationRequired`, or `notLoggedIn`, reconnect Research through the client or run the sign-in command above. Complete browser sign-in and approve the plugin's requested permissions, then retry your original request after the client confirms the connection. Google identity confirmation alone does not confirm Research sign-in or the plugin connection. If the callback times out, start a fresh authorization attempt. Start a new conversation only if the connected client requires it to load tools.
+
+After deletion of all Research data completes, sign in and authorize again with the same AlgoRover account to start new research. Deleted tasks, results, and reports stay unavailable. Access and authorization remain paused while deletion is pending.
 
 If the service cannot be reached, check your network and the client's MCP connection status. When contacting support, include the error message and request ID. Leave out passwords and tokens.
 
