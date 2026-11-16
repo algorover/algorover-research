@@ -42,6 +42,7 @@ If Research tools are missing or authorization fails, follow Connection recovery
 - Use `get_backtest` to show the requested task's status card and `list_backtests` to show the signed-in user's task list.
 - Follow the task's returned `allowed_actions` for cancellation, viewing results, and deletion. Refresh the task before acting on an older status.
 - For results or a report download, use `get_backtest_result` to show the result card. Point to its Download full report button. In a text-only host, use `get_backtest_report_download` to obtain the requested link. Explain metrics, assumptions, warnings and provenance when asked. Historical results do not establish future returns.
+- When saving a report, use the download result's `filename`. Preserve the strategy name, version, task ID and `.zip` extension. If that filename already exists, keep it and append a numeric suffix to the new file before `.zip`.
 - Use `list_backtest_trades` for requested trade details. Preserve returned pagination cursors and download URLs.
 - On failure, show the service's error message and request ID when available. Do not invent results or substitute a local engine.
 
